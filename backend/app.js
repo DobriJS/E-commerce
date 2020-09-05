@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const cookiearser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 // import routes
 const userRoutes = require('./routes/user');
 
