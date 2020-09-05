@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cookiearser = require('cookie-parser');
 // import routes
 const userRoutes = require('./routes/user');
+
+// middlewares
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // routes middleware
 app.use(userRoutes); 
