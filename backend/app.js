@@ -10,6 +10,7 @@ require('dotenv').config();
 // import routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 
 // middlewares
 app.use(morgan('dev'));
@@ -19,7 +20,8 @@ app.use(expressValidator());
 
 // routes middleware
 app.use(authRoutes); 
-app.use(userRoutes); 
+app.use(userRoutes);
+app.use(categoryRoutes)
 
 
 // db
