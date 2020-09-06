@@ -11,6 +11,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 
 // middlewares
 app.use(morgan('dev'));
@@ -19,9 +20,10 @@ app.use(cookieParser());
 app.use(expressValidator());
 
 // routes middleware
-app.use(authRoutes); 
-app.use(userRoutes);
-app.use(categoryRoutes)
+app.use('/api', authRoutes); 
+app.use('/api', userRoutes);
+app.use('/api', categoryRoutes);
+app.use('/api', productRoutes)
 
 
 // db
