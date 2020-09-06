@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 require('dotenv').config();
 
 // import routes
-const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
 
 // middlewares
 app.use(morgan('dev'));
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 
 // routes middleware
-app.use(userRoutes); 
+app.use(authRoutes); 
 
 
 // db
