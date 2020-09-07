@@ -129,7 +129,7 @@ exports.update = (req, res) => {
  * if no params are sent, then all products are returned
  */
 
-exports.list = (req, list) => {
+exports.list = (req, res) => {
     let order = req.query.order ? req.query.order : 'asc';
     let sortBy  = req.query.sortBy ? req.query.sortBy : '_id';
     let limit  = req.query.limit ? req.query.limit : 6;
