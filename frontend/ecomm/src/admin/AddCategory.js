@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
+import { createCategory } from './apiAdmin';
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -12,18 +13,29 @@ const AddCategory = () => {
     const {user, token} = isAuthenticated();
 
     const handleChange = (e) => {
-        setError('')
-        setName(e.target.value)
+        setError('');
+        setName(e.target.value);
     };
 
     const clickSubmit = (e) => {
-        e.preventDefault()
-        setError('')
-        setSuccess(false)
+        e.preventDefault();
+        setError('');
+        setSuccess(false);
         // make request to api to create category
+        createCategory(user._id, token, {name})
+            .then(data => {
+            if(data.error) {
+                setError(data.error);
+            } else {
+                setError('');
+                setSuccess(true);
+            }
+        })
     };
+                
 
     const newCategoryForm = () => (
+
         <form onSubmit={clickSubmit}>
             <div className='form-group'>
                 <label className='text-muted'>Name</label>
@@ -33,9 +45,22 @@ const AddCategory = () => {
         </form>
     );
 
+    const showSuccess = () => {
+        if (success) {
+        return <h3 className='text-success'>{name} is created</h3>
+        }
+    };
+
+    const showError = () => {
+        if (error) {
+        return <h3 className='text-danger'>{name} should be unique</h3>;
+        }
+    }
+
     return (
 
-        <Layout title='Add a new category' description={`G'day ${name}, ready to add a new category`}>
+        <Layout title='Add a new category'
+                description={`G'day ${name}, ready to add a new category`}>
 
            <div className='row'>
                <div className='col-md-8 offset-md-2'>{newCategoryForm()}</div>

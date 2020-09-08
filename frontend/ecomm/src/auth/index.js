@@ -58,4 +58,4 @@ export const signup = user => {
       } else {
           return false;
       }
-  }
+  };
