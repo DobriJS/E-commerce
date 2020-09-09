@@ -22,7 +22,7 @@ const AddCategory = () => {
         setError('');
         setSuccess(false);
         // make request to api to create category
-        createCategory(user._id, token, {name})
+        createCategory(user._id, token, { name })
             .then(data => {
             if(data.error) {
                 setError(true);
@@ -61,7 +61,15 @@ const AddCategory = () => {
         if (error) {
         return <h3 className='text-danger'>Category should be unique</h3>;
         }
-    }
+    };
+
+    const goBack = () => (
+       <div className='mt-5'>
+           <Link to='/admin/dashboard' className='text-warning'>
+               Back to Dashboard
+           </Link>
+       </div> 
+    );
 
     return (
 
@@ -72,7 +80,9 @@ const AddCategory = () => {
                <div className='col-md-8 offset-md-2'>
                    {showSuccess()}
                    {showError()}
-                   {newCategoryForm()}</div>
+                   {newCategoryForm()}
+                   {goBack()}
+                </div>
            </div>
 
         </Layout>
