@@ -50,8 +50,8 @@ const AddProduct = () => {
             } else {
                 setValues({ ...values, categories: data, formData: new FormData() })
             }
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         init();
