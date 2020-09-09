@@ -145,7 +145,7 @@ const AddProduct = () => {
         </div>
     );
 
-    const showSucces = () => (
+    const showSuccess = () => (
         <div className='alert alert-info' style={{display: createdProduct ? '' : 'none'}}>
             <h2>{`${createdProduct}`} is created!</h2>
         </div>
@@ -167,7 +167,7 @@ const AddProduct = () => {
         <div className='row'>
             <div className='col-md-8 offset-md-2'>
                 {showLoading()}
-                {showSucces()}
+                {showSuccess()}
                 {showError()}
                 {newPostForm()}    
             </div>
