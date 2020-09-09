@@ -4,6 +4,7 @@ import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import { createProduct } from './apiAdmin';
 
+
 const AddProduct = () => {
 
     
@@ -36,7 +37,7 @@ const AddProduct = () => {
         photo,
         loading,
         error,
-        createProduct,
+        createdProduct,
         redirectToProfile,
         formData
     } = values;
