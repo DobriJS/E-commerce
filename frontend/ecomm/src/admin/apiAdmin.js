@@ -24,6 +24,6 @@ export const createCategory = (userId, token, category) => {
           },
           body: product
       })
-      .then(res =>{return res.json()})
+      .then(response =>{return response.json()})
       .catch(err => { console.log(err)});
   };

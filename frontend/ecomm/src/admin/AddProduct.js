@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect, } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { createProduct } from './apiAdmin';
 
 const AddProduct = () => {
 
-    const { user, token } = isAuthenticated();
+    
     const [values, setValues] = useState({
         name: '',
         description: '',
@@ -22,6 +22,8 @@ const AddProduct = () => {
         redirectToProfile: false,
         formData: ''
     });
+
+    const { user, token } = isAuthenticated();
 
     const {
         name, 
@@ -50,7 +52,26 @@ const AddProduct = () => {
     };
 
     const clickSubmit = event => {
-        //
+       event.preventDefault();
+       setValues({ ...values, error: '', loading: true });
+
+       createProduct(user._id, token, formData)
+       .then(data => {
+           if(data.error) {
+               setValues({...values, error: data.error})
+           } else {
+               setValues({
+                   ...values,
+                   name: '',
+                   description: '',
+                   photo: '',
+                   price: '', 
+                   quantity: '',
+                   loading: false,
+                   createdProduct: data.name
+               });
+           }
+       });
     };
 
     const newPostForm = () => (
@@ -82,6 +103,7 @@ const AddProduct = () => {
                 <label className='text-muted'>Category</label>
                 <select onChange={handleChange('category')} className='form-control' >
                     <option value='5f5611bbefc63604ddc61819'>Python</option>
+                    <option value='5f5611bbefc63604ddc61819'>PHP</option>
                 </select>
             </div>
 
