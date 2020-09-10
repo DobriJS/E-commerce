@@ -3,9 +3,12 @@ import Layout from './Layout';
 import Card from './Card';
 import { getCategories } from './apiCore';
 import Checkbox from './Checkbox';
+import {prices} from './fixedPrices';
 
 const Shop = () => {
 
+    const [myFilters, setMyFilters] = useState({
+        filters: {category: [], price: []}})
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(false);
 
@@ -21,7 +24,14 @@ const Shop = () => {
 
     useEffect(() => {
         init()
-    }, [])
+    }, []);
+
+    const handleFilters = (filters, filterBy) => {
+      const newFilters = [...myFilters]
+      newFilters.filter[filterBy] = filters;
+      setMyFilters(newFilters)
+        //  console.log('SHOP', filters, filterBy)
+    }
 
     return (
         <Layout title="Shop Page" description="Search and find books of your choice" className='container-fluid'>
@@ -29,7 +39,10 @@ const Shop = () => {
                 <div className='col-4'>
                     <h4>Filter by categories</h4>
                   <ul>
-                  <Checkbox categories={categories} />
+                  <Checkbox 
+                   categories={categories}
+                   handleFilters={filters => 
+                   handleFilters( filters, 'category')} />
                   </ul>
                 </div>
 
