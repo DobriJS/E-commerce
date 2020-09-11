@@ -3,7 +3,7 @@ import Layout from './Layout';
 import { read, listRelated } from './apiCore';
 import Card from './Card';
 
-const Product = (props) => {
+const Product = props => {
 
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProduct] = useState([]);
@@ -29,7 +29,7 @@ const Product = (props) => {
 
     useEffect(() => {
         const productId = props.match.params.productId;
-        console.log(productId);
+        
         loadSingleProduct(productId);
     }, [props]);
 
