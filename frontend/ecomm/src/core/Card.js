@@ -33,7 +33,7 @@ const Card = ({ product, showViewProductButton = true }) => {
     return (
       
             <div className='card'>
-            <div className='card-header'>{product.name}</div>
+            <div className='card-header name'>{product.name}</div>
             <div className='card-body'>
 
                 <ShowImage item={product} url="product" />
