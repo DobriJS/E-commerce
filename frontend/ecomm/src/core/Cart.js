@@ -8,10 +8,11 @@ import Checkout from './Checkout';
 const Cart = () => {
 
     const [items, setItems] = useState([]);
+    const [run, setRun] = useState(false);
 
     useEffect(() => {
         setItems(getCart());
-    }, []);
+    }, [run]);
 
     const showItems = items => {
         return (
@@ -32,6 +33,12 @@ const Cart = () => {
             </div>
         );
     };
+
+    const noItemsMessage = () => (
+        <h2>
+            Your cart is empty. <br /> <Link to="/shop">Continue shopping</Link>
+        </h2>
+    );
 
 
     return (
