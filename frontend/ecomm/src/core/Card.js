@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
-import { addItem, updateItem, removeItem } from './cartHelpers'
+import { addItem, updateItem, removeItem } from './cartHelpers';
  
 const Card = ({ product, showViewProductButton = true, showAddToCartButton = true, cartUpdate = false,
     showRemoveProductButton = false,  setRun = f => f,
