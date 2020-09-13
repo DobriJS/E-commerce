@@ -32,16 +32,18 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
     };
 
     const shoudlRedirect = redirect => {
-        if(redirect) {
+        if (redirect) {
             return <Redirect to='/cart' />
         }
     };
 
-    const showAddtoCartButton = () => {
+    const showAddtoCart = (showAddToCartButton) => {
         return (
+          showAddToCartButton && (
             <button onClick={addToCart} className='btn btn-outline-warning mt-2 mb-2'>
                     Add to card
             </button>
+          )
         );
     };
 
@@ -51,7 +53,7 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
     };
 
     const handleChange = productId => event => {
-        setRun(!run); // run useEffect in parent Cart
+         // setRun(!run); // run useEffect in parent Cart
         setCount(event.target.value < 1 ? 1 : event.target.value);
         if (event.target.value >= 1) {
           updateItem(productId, event.target.value);
@@ -79,7 +81,7 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
             <button
               onClick={() => {
                 removeItem(product._id);
-                setRun(!run); // run useEffect in parent Cart
+                // setRun(!run); // run useEffect in parent Cart
               }}
               className="btn btn-outline-danger mt-2 mb-2"
             >
@@ -112,7 +114,7 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
                      {showStock(product.quantity)}
                      <br/>
                      {showViewButton(showViewProductButton)}
-                     {showAddtoCartButton(showAddToCartButton)}
+                     {showAddtoCart(showAddToCartButton)}
                      {showRemoveButton(showRemoveProductButton)}
                      {showCartUpdateOptions(cartUpdate)}
                     
