@@ -53,8 +53,8 @@ const Product = props => {
                         <h4>Related products</h4>
                         {relatedProduct.map((p, i) => (
 
-                            <div className='mb-3'>
-                                <Card key={i} product={p} />
+                            <div className='mb-3' key={i}>
+                                <Card  product={p} />
                             </div>
                         ))}
                     </div>

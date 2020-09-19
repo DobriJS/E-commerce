@@ -1,18 +1,24 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './cartHelpers'
  
-const Card = ({ product, showViewProductButton = true, showAddToCartButton = true, cartUpdate = false,
-    showRemoveProductButton = false,  setRun = f => f,
-    run = undefined}) => {
+const Card = ({ 
+    product, 
+    showViewProductButton = true, 
+    showAddToCartButton = true, 
+    cartUpdate = false,
+    showRemoveProductButton = false, 
+    setRun = f => f,
+    run = undefined 
+    }) => {
 
     const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
 
 
-    const showViewButton = (showViewProductButton) => {
+    const showViewButton = showViewProductButton => {
         return (
             showViewProductButton && (
                 <Link to={`/product/${product._id}`} className='mr-2'>
@@ -26,10 +32,9 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
 
    
     const addToCart = () => {
-        addItem(product, 
-            setRedirect(true))
+        addItem(product, setRedirect(true))
+      };
         
-    };
 
     const shoudlRedirect = redirect => {
         if (redirect) {
@@ -37,23 +42,23 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
         }
     };
 
-    const showAddtoCart = (showAddToCartButton) => {
+    const showAddtoCartBtn = showAddToCartButton => {
         return (
           showAddToCartButton && (
-            <button onClick={addToCart} className='btn btn-outline-warning mt-2 mb-2'>
+            <button onClick={addToCart} className='btn btn-outline-warning mt-2 mb-2 card-btn-1'>
                     Add to card
             </button>
           )
         );
     };
 
-    const showStock = (quantity) => {
+    const showStock = quantity => {
         return quantity > 0 ? (<span className='badge badge-primary badge-pill'>In Stock</span>) :
                               (<span className='badge badge-primary badge-pill'>Out of Stock</span>)
     };
 
     const handleChange = productId => event => {
-         // setRun(!run); // run useEffect in parent Cart
+        setRun(!run);
         setCount(event.target.value < 1 ? 1 : event.target.value);
         if (event.target.value >= 1) {
           updateItem(productId, event.target.value);
@@ -81,10 +86,11 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
             <button
               onClick={() => {
                 removeItem(product._id);
-                // setRun(!run); // run useEffect in parent Cart
+                setRun(!run);
               }}
               className="btn btn-outline-danger mt-2 mb-2"
-            >
+                
+                >
               Remove Product
             </button>
           )
@@ -114,7 +120,7 @@ const Card = ({ product, showViewProductButton = true, showAddToCartButton = tru
                      {showStock(product.quantity)}
                      <br/>
                      {showViewButton(showViewProductButton)}
-                     {showAddtoCart(showAddToCartButton)}
+                     {showAddtoCartBtn(showAddToCartButton)}
                      {showRemoveButton(showRemoveProductButton)}
                      {showCartUpdateOptions(cartUpdate)}
                     
