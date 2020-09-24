@@ -23,7 +23,7 @@ exports.signin = (req, res) => {
     // find the user based on email
     const {email, password} = req.body;
 
-    User.findOne({email}, (err, user) => {
+    User.findOne({ email }, (err, user) => {
         if(err || !user) {
             return res.status(400).json({
                 err: 'User with that email does not exist. Please signup'
@@ -73,5 +73,5 @@ exports.isAdmin = (req, res, next) => {
             error: 'Admin resourse! Acces denied'
         });
     };
-    next()
+    next();
 };
