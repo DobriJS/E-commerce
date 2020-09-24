@@ -23,7 +23,7 @@ export const signup = user => {
           },
           body: JSON.stringify(user)
       })
-      .then(res =>{return res.json()})
+      .then(res =>{ return res.json() })
       .catch(err => { console.log(err)});
   };
 

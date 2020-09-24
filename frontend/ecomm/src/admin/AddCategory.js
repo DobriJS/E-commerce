@@ -24,8 +24,8 @@ const AddCategory = () => {
         // make request to api to create category
         createCategory(user._id, token, { name })
             .then(data => {
-            if(data.error) {
-                setError(true);
+            if (data.error) {
+                setError(data.error);
             } else {
                 setError('');
                 setSuccess(true);
@@ -40,13 +40,13 @@ const AddCategory = () => {
             <div className='form-group'>
                 <label className='text-muted'>Name</label>
                 <input type='text' 
-                className='form-control'
+                 className='form-control'
                  onChange={handleChange} 
                  value={name} 
-                 
                  autoFocus 
                  required 
                  />
+                 
             </div>
                 <button className='btn btn-outline-primary'>Create Category</button>
         </form>
@@ -92,3 +92,5 @@ const AddCategory = () => {
 
 export default AddCategory;
                
+// Data Structures And Algorithms 
+//Computer Science

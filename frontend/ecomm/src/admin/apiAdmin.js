@@ -11,11 +11,11 @@ export const createCategory = (userId, token, category) => {
           },
           body: JSON.stringify(category)
       })
-      .then(res =>{return res.json()})
-      .catch(err => { console.log(err)});
+      .then(res =>  { return res.json() })
+      .catch(err => { console.log(err) });
   };
 
-  export const createProduct = (userId, token, product) => {
+export const createProduct = (userId, token, product) => {
     return fetch(`${API}/product/create/${userId}`, {
           method: "POST",
           headers: {
@@ -24,15 +24,15 @@ export const createCategory = (userId, token, category) => {
           },
           body: product
       })
-      .then(response =>{return response.json()})
-      .catch(err => { console.log(err)});
+      .then(response => { return response.json() })
+      .catch(err => { console.log(err) });
   };
 
-  export const getCategories = () => {
+export const getCategories = () => {
       return fetch(`${API}/categories`, {
           method: 'GET'
       })
       .then(response => {
           return response.json();
-      });
+      }).catch(err => console.log(err));
   };
